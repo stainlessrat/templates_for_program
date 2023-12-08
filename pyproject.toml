@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "templates-for-program"
+version = "0.1.0"
+description = ""
+authors = ["Sergey Stroev <stainlessrat83@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+select = ["E", "F", "I", "N", "UP", "S", "FBT", "B", "COM", "C4", "DTZ", "ISC", "G", "PIE", "T20", "PT", "Q", "SLF", "SIM", "ARG", "PTH", "ERA", "PGH", "PL", "TRY"]
+ignore = ["COM812", "C408", "PLW0603", "PLR0911", "PLR0912", "TRY003", "TRY300", "TRY401"]
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "single"
+miltiline-quotes = "double"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+"**/{tests}/*" = ["S101", "S311", "SLF", "PLR0913"]
+
+[tool.ruff.pylint]
+max-args = 10
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pyright]
+venvPath = "./"
+venv = ".venv"
+executionEnvironments = [{root = "./"}]
+typeCheckingMode = "basic"
