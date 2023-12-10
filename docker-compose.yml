@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    image: my_first_fastapi_app
+    container_name: my_first_fastapi_app
+    command: poetry run uvicorn app.main:app --host ${FASTAPI_HOST} --port ${FASTAPI_PORT}
+    restart: unless-stopped
+    healthcheck:
+      test: curl --fail -s http://${FASTAPI_HOST}:${FASTAPI_PORT}/healthcheck || exit 1
+      interval: 1m
+      timeout: 30s
+      retries: 3
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/code/logs
+    ports:
+      - "${FASTAPI_PORT}:${FASTAPI_PORT}"
