@@ -1,0 +1,56 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "default": {
+            "format": "%(asctime)s | %(levelname)-8s | %(name)s.%(module)s.%(funcName)s.%(lineno)d: %(message)s"
+        },
+        "app_service_name": {
+            "format": "%(asctime)s | %(levelname)-8s | %(some_user_key)s | %(name)s.%(module)s.%(funcName)s.%(lineno)d: %(message)s"
+        }
+    },
+    "handlers": {
+        "console_default": {
+            "class": "logging.StreamHandler",
+            "formatter": "default",
+            "level": "DEBUG"
+        },
+        "console_app_service_name": {
+            "class": "logging.StreamHandler",
+            "formatter": "app_service_name",
+            "level": "DEBUG"
+        },
+        "file_default":{
+            "class": "app.log.rotator.GzRotatingFileHandler",
+            "maxBytes": 100000000,
+            "backupCount": 5,
+            "filename": "./logs/app.log",
+            "formatter": "default",
+            "level": "INFO"
+        },
+        "file_app_service_name":{
+            "class": "app.log.rotator.GzRotatingFileHandler",
+            "maxBytes": 100000000,
+            "backupCount": 5,
+            "filename": "./logs/app.log",
+            "formatter": "app_service_name",
+            "level": "INFO"
+        }
+    },
+    "loggers": {
+        "app": {
+            "handlers": [
+                "console_app_service_name",
+                "file_app_service_name"
+            ],
+            "level": "DEBUG"
+        },
+        "uvicorn": {
+            "handlers": [
+                "console_default",
+                "file_default"
+            ],
+            "level": "DEBUG"
+        }
+    }
+}
