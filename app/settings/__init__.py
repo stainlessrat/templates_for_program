@@ -1,8 +1,11 @@
+from dotenv import load_dotenv
 from pydantic import BaseSettings
+
+load_dotenv()
 
 
 class Settings(BaseSettings):
     MAX_RETRIES: int = 10
 
 
-settings = Settings(_env_file='.env')  # type: ignore
+settings = Settings()  # type: ignore

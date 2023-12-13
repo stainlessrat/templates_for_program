@@ -20,19 +20,19 @@
             "formatter": "app_service_name",
             "level": "DEBUG"
         },
-        "file_default":{
-            "class": "app.log.rotator.GzRotatingFileHandler",
+        "file_default": {
+            "class": "app.core.log.GzRotatingFileHandler",
             "maxBytes": 100000000,
             "backupCount": 5,
-            "filename": "./logs/app.log",
+            "filename": "./logs/web.log",
             "formatter": "default",
             "level": "INFO"
         },
-        "file_app_service_name":{
-            "class": "app.log.rotator.GzRotatingFileHandler",
+        "file_app_service_name": {
+            "class": "app.core.log.GzRotatingFileHandler",
             "maxBytes": 100000000,
             "backupCount": 5,
-            "filename": "./logs/app.log",
+            "filename": "./logs/web.log",
             "formatter": "app_service_name",
             "level": "INFO"
         }
